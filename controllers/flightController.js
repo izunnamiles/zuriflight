@@ -1,7 +1,7 @@
 const Flight = require('../models/Flight')
 
 exports.findOne = (req, res) => {
-    User.findById(req.params.id)  
+    Flight.findById(req.params.id)  
     .then(flight => {
         if(!flight) {  
             return res.status(404).send({   message: "Flight not found with id " + req.params.id });
@@ -12,20 +12,20 @@ exports.findOne = (req, res) => {
         if (err.kind === 'ObjectId') {
             return res.status(404)
             .send({
-                message: "User not found with id " + req.params.id
+                message: "Flight not found with id " + req.params.id
             });
         }
-        return res.status(500).send({ message: "Error getting user with id " + req.params.id });
+        return res.status(500).send({ message: "Error getting flight with id " + req.params.id });
     });
 }
 exports.findAll = (req, res) => {
-    User.find()  
-    .then(users => { 
-        res.status(200).send(users);
+    Flight.find()  
+    .then(flights => { 
+        res.status(200).send(flights);
     })
    .catch(err => {  
         res.status(500).send({
-            message: err.message || "Something went wrong while getting list of users."
+            message: err.message || "Something went wrong while getting list of flights."
         });
     });
 }
